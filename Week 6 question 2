@@ -1,0 +1,63 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Shape {
+public:
+    virtual void getData() = 0;
+    virtual void printData() = 0;
+    virtual double calculateArea() = 0;
+};
+
+class Rectangle : public Shape {
+private:
+    double length, width;
+
+public:
+    void getData() {
+        cout << "Enter length and width of the rectangle: ";
+        cin >> length >> width;
+    }
+
+    void printData() {
+        cout << "Rectangle - Length: " << length << ", Width: " << width << endl;
+    }
+
+    double calculateArea() {
+        return length * width;
+    }
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+
+public:
+    void getData() {
+        cout << "Enter radius of the circle: ";
+        cin >> radius;
+    }
+
+    void printData() {
+        cout << "Circle - Radius: " << radius << endl;
+    }
+
+    double calculateArea() {
+        return 3.14159 * radius * radius;
+    }
+};
+
+int main() {
+    Rectangle rect;
+    Circle circ;
+
+    rect.getData();
+    rect.printData();
+    cout << "Area of Rectangle: " << rect.calculateArea() << endl;
+
+    circ.getData();
+    circ.printData();
+    cout << "Area of Circle: " << circ.calculateArea() << endl;
+
+    return 0;
+}
