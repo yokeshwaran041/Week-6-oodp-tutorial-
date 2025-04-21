@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+protected:
+    string name;
+    int rollNumber;
+public:
+    void setStudentDetails(string n, int r) {
+        name = n;
+        rollNumber = r;
+    }
+    void displayStudentDetails() {
+        cout << "Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+    }
+};
+
+class Marks : virtual public Student {
+protected:
+    int m1, m2, m3;
+public:
+    void setMarks(int a, int b, int c) {
+        m1 = a;
+        m2 = b;
+        m3 = c;
+    }
+    int totalAcademicMarks() {
+        return m1 + m2 + m3;
+    }
+    void displayAcademicMarks() {
+        cout << "Academic Marks: " << m1 << ", " << m2 << ", " << m3 << endl;
+        cout << "Total Academic Marks: " << totalAcademicMarks() << endl;
+    }
+};
+
+class Sports : virtual public Student {
+protected:
+    int sportsMarks;
+public:
+    void setSportsMarks(int sm) {
+        sportsMarks = sm;
+    }
+    void displaySportsMarks() {
+        cout << "Sports Marks: " << sportsMarks << endl;
+    }
+};
+
+class Result : public Marks, public Sports {
+public:
+    void displayResult() {
+        displayStudentDetails();
+        displayAcademicMarks();
+        displaySportsMarks();
+        int total = totalAcademicMarks() + sportsMarks;
+        float average = total / 4.0;
+        cout << "Overall Total Marks: " << total << endl;
+        cout << "Average Marks: " << average << endl;
+    }
+};
+
+int main() {
+    Result student;
+    student.setStudentDetails("Meena", 101);
+    student.setMarks(80, 85, 90);
+    student.setSportsMarks(75);
+    student.displayResult();
+    return 0;
+}
